@@ -48,7 +48,7 @@ Kik requires that a bot doesn't initiate a conversation with a user. When a user
 client.messages.send_text('user_name', 'chat_id', 'message')
 ```
 
-You can add a keyboard to your message. Pass in the keyboard as an array containing a list of the elements that make up the keyboard. The `boolen` argument at the end is for toggling the keyboard ON or OFF.
+You can add a keyboard to your message. Pass in the keyboard as an array containing a list of the elements that make up the keyboard. The `boolean` argument at the end is for toggling the keyboard ON or OFF.
 
 ```ruby
 client.messages.send_text('user_name', 'chat_id', 'Are you a human being?', ["Yes", "No"], true)
