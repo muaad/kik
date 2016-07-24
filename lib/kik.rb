@@ -55,6 +55,71 @@ module Kik
 	        @client.post("#{API_URL}/message", body.to_json)
 		end
 
+		def send_link user_name, chat_id, url, title="", text="", pic_url="", attribution={}, noForward="", kikJsData={}
+			body = {
+					messages: [
+			            {
+			                url: url,
+			                to: user_name,
+			                type: 'link',
+			                chatId: chat_id,
+			                title: 'title',
+			                text: 'text',
+			                picUrl: pic_url,
+			                attribution: attribution,
+			                noForward: noForward,
+			                kikJsData: kikJsData
+			            }
+		        	]
+	    	}
+	        @client.post("#{API_URL}/message", body.to_json)
+		end
+
+		def send_image user_name, chat_id, pic_url
+			body = {
+					messages: [
+			            {
+			                to: user_name,
+			                type: 'picture',
+			                chatId: chat_id,
+			                picUrl: pic_url
+			            }
+		        	]
+	    	}
+	        @client.post("#{API_URL}/message", body.to_json)
+		end
+
+		def send_video user_name, chat_id, videoUrl, muted=false, autoplay=false, attribution="galery"
+			body = {
+					messages: [
+			            {
+			                to: user_name,
+			                type: 'video',
+			                chatId: chat_id,
+			                videoUrl: videoUrl,
+                            muted: muted,
+                            autoplay: autoplay,
+                            attribution: attribution
+			            }
+		        	]
+	    	}
+	        @client.post("#{API_URL}/message", body.to_json)
+		end
+
+		def send_typing user_name, chat_id
+			body = {
+					messages: [
+			            {
+			                to: user_name,
+			                chatId: chat_id,
+			                type: "is-typing",
+			                isTyping: true
+			            }
+		        	]
+	    	}
+	        @client.post("#{API_URL}/message", body.to_json)
+		end
+
 		def construct_keyboard options, hidden
 			keyboard = []
 			keyboard << {type: "suggested", hidden: !hidden, responses: []}
