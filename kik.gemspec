@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Muaad"]
   spec.email         = ["muadh24@gmail.com"]
 
-  spec.summary       = %q{TODO: Kik Ruby.}
-  spec.description   = %q{TODO: Ruby gem to consume Kik bot API.}
-  spec.homepage      = "TODO: https://github.com/muaad/kik"
+  spec.summary       = %q{Kik Ruby.}
+  spec.description   = %q{Ruby gem to consume Kik bot API.}
+  spec.homepage      = "https://github.com/muaad/kik"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
