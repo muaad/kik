@@ -13,7 +13,7 @@ module Kik
 		def post url, body
 			auth = "#{@bot_name}:#{@api_key}"
 			HTTParty.post(url, {
-				body: body,
+				body: body.to_json,
 				headers: {
 					'Content-Type' => 'application/json',
 					'Authorization' => "Basic #{Base64.encode64(auth)}"
@@ -27,7 +27,7 @@ module Kik
 				webhook: url,
 				features: features
 			}
-			post("#{API_URL}/config", data.to_json)
+			post("#{API_URL}/config", data)
 		end
 
 		def messages
@@ -52,7 +52,7 @@ module Kik
 		        	]
 	    	}
 	    	body[:messages][0].merge!({keyboards: construct_keyboard(options, keyboard)}) if keyboard
-	        @client.post("#{API_URL}/message", body.to_json)
+	        @client.post("#{API_URL}/message", body)
 		end
 
 		def send_link user_name, chat_id, url, title="", text="", pic_url="", attribution={}, noForward="", kikJsData={}
@@ -72,7 +72,7 @@ module Kik
 			            }
 		        	]
 	    	}
-	        @client.post("#{API_URL}/message", body.to_json)
+	        @client.post("#{API_URL}/message", body)
 		end
 
 		def send_image user_name, chat_id, pic_url
@@ -86,7 +86,7 @@ module Kik
 			            }
 		        	]
 	    	}
-	        @client.post("#{API_URL}/message", body.to_json)
+	        @client.post("#{API_URL}/message", body)
 		end
 
 		def send_video user_name, chat_id, videoUrl, muted=false, autoplay=false, attribution="galery"
@@ -103,7 +103,7 @@ module Kik
 			            }
 		        	]
 	    	}
-	        @client.post("#{API_URL}/message", body.to_json)
+	        @client.post("#{API_URL}/message", body)
 		end
 
 		def send_typing user_name, chat_id
@@ -117,7 +117,7 @@ module Kik
 			            }
 		        	]
 	    	}
-	        @client.post("#{API_URL}/message", body.to_json)
+	        @client.post("#{API_URL}/message", body)
 		end
 
 		def construct_keyboard options, hidden
