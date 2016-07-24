@@ -7,7 +7,7 @@ Build Kik bots with Ruby
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'kik'
+gem 'kik', git: "git://github.com/muaad/kik"
 ```
 
 And then execute:
@@ -52,6 +52,37 @@ You can add a keyboard to your message. Pass in the keyboard as an array contain
 
 ```ruby
 client.messages.send_text('user_name', 'chat_id', 'Are you a human being?', ["Yes", "No"], true)
+```
+
+### Send images
+
+```ruby
+client.messages.send_image 'user_name', 'chat_id', 'path/to/file.png'
+```
+
+### Send videos
+
+```ruby
+client.messages.send_video 'user_name', 'chat_id', 'path/to/video/file.png'
+```
+
+You can also set the following properties to determine whether a video should be autoplayed or muted or set the attribution.
+
+```ruby
+client.messages.send_video 'user_name', 'chat_id', 'path/to/video/file.png', muted, autoplay
+```
+where `muted` and `autoplay` are `boolean` and both default to `false`.
+
+### Send links
+
+```ruby
+client.messages.send_link 'user_name', 'chat_id', 'url'
+```
+
+### Send typing
+
+```ruby
+client.messages.send_typing 'user_name', 'chat_id'
 ```
 
 ## Contributing
