@@ -89,7 +89,7 @@ module Kik
 	        @client.post("#{API_URL}/message", body)
 		end
 
-		def send_video user_name, chat_id, videoUrl, muted=false, autoplay=false, attribution="galery"
+		def send_video user_name, chat_id, videoUrl, muted=false, autoplay=false, attribution="gallery"
 			body = {
 					messages: [
 			            {
