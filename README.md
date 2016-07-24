@@ -1,8 +1,6 @@
 # Kik
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/kik`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Build Kik bots with Ruby
 
 ## Installation
 
@@ -22,17 +20,43 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create a Kik bot at [dev.kik.com](https://dev.kik.com/) and copy your bot name and API key.
 
-## Development
+Initialize the `Kik::Client`
+	
+```ruby
+client = Kik::Client.new 'bot_name', 'api_key'
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Set webhook
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+client.set_webhook 'url'
+```
+
+You can specify some settings like whether you want to send/receive read receipts, delivery receipts or typing notification.
+
+```ruby
+client.set_webhook 'url', { "manuallySendReadReceipts" => false, "receiveReadReceipts" => false, "receiveDeliveryReceipts" => false, "receiveIsTyping" => false }
+```
+
+### Send messages
+
+Kik requires that a bot doesn't initiate a conversation with a user. When a user sends your bot a message, it will receive the `chat_id` which you can use to reply to the message.
+
+```ruby
+client.messages.send_text('user_name', 'chat_id', 'message')
+```
+
+You can add a keyboard to your message. Pass in the keyboard as an array containing a list of the elements that make up the keyboard. The `boolean` argument at the end is for toggling the keyboard ON or OFF.
+
+```ruby
+client.messages.send_text('user_name', 'chat_id', 'Are you a human being?', ["Yes", "No"], true)
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/kik.
+Bug reports and pull requests are welcome on GitHub at https://github.com/muaad/kik.
 
 
 ## License
