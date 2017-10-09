@@ -16,7 +16,7 @@ module Kik
 				body: body.to_json,
 				headers: {
 					'Content-Type' => 'application/json',
-					'Authorization' => "Basic #{Base64.encode64(auth)}"
+					'Authorization' => "Basic #{Base64.strict_encode64(auth)}"
 				},
 				debug_output: $stdout
 			})
